@@ -1,4 +1,6 @@
 class Semver
+  include Comparable
+  
   attr_reader :major, :minor, :patch, :pre_release, :build
   
   REGEX = /^
@@ -34,7 +36,7 @@ class Semver
   end
   
   def version
-    @version || ''
+    @version || false
   end
   
   def bump(which)
@@ -61,6 +63,10 @@ class Semver
     #TODO: implement build and pre-release comparison
   end
   
+  def <(other)
+    (self <=> other) == -1
+  end
+  
   def to_s
     self.version
   end
@@ -69,6 +75,10 @@ class Semver
     arr = [@major, @minor, @patch]
     arr.push(@build || @pre_release) if @build || @pre_release
     arr
+  end
+  
+  def self.valid?(str)
+    !!str.match(REGEX)
   end
   
 end
