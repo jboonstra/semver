@@ -6,12 +6,12 @@ describe Semver do
     
     it 'should be initialized with an empty version string' do
       ver = Semver.new
-      ver.version.should == ''
+      ver.version.should == false
     end
     
     it 'should reject an invalid version string' do
       ver = Semver.new('foo')
-      ver.version.should == ''
+      ver.version.should == false
     end
     
     it 'should accept a version string on initialization' do
