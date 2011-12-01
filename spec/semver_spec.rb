@@ -100,6 +100,18 @@ describe Semver do
     
   end
   
+  describe '#valid?' do
+    
+    it 'should report true for a valid version string' do
+      Semver.valid?('1.2.3').should == true
+    end
+    
+    it 'should report false for an invalid version string' do
+      Semver.valid?('foo').should == false
+    end
+    
+  end
+  
   describe '#to_a' do
     
     it 'should convert a version with no release or build to an array' do
